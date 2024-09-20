@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor Español- Quechua </title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            display: flex;
+        }
+        .main-container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 3;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .sidebar {
+            flex: 1;
+            background-color: #4a90e2;
+            padding: 20px;
+            color: white;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+        }
+        button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #27ae60;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .imagen-decorativa {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .funcion-adicional {
+            background-color: #3498db;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .funcion-adicional:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="content">
+            <h1>Traductor Español-Quechua</h1>
+            <input type="text" id="palabra" placeholder="Ingresa una palabra en español">
+            <button onclick="traducir()">Traducir</button>
+            <div id="resultado"></div>
+            <img src="https://picsum.photos/400/200" alt="Imagen decorativa" class="imagen-decorativa">
+            <img src="https://picsum.photos/400/201" alt="Otra imagen decorativa" class="imagen-decorativa">
+        </div>
+        <div class="sidebar">
+            <h2>Funciones Adicionales</h2>
+            <a href="barra.html" class="funcion-adicional">Escaneo de Código</a><br><br><br><br>
+            <a href="texto_a_voz22.html" class="funcion-adicional">Texto a Voz</a><br>
+            <div class="funcion-adicional" onclick="alert('Función 3 en desarrollo')">Función 3</div>
+        </div>
+    </div>
+
+    <script>
+        const traducciones = {
+            "hola": "rimaykuy",
+            "como estas": "Allinllachu",
+            "hablame":"rimapayaway",
+            "estas bien":" Alliyanchu Cashanky",
+            "como te llamas":"Yman Sutyllki",
+            "cuantos años tienes":"Aykatac Watallki",
+            "quien es tu mama":"Pitac Mamallki",
+            "quien es tu papa":"pitac Talltallky",
+            "de donde eres":"Maymanta Kancqi",
+            "a donde vas":"Maytatahc Ripunty",
+            "cuando vuelves":"Aykaq kutimunqui",
+            "hoy":"kunan",
+            "mañana":"Paqarin",
+            "pasado mañana":"Paqarin Punchau",
+            "perro":"Alqo o Allujho",
+            "gato":"Michi",
+            "gatito":"Michicha",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+            "":"",
+    "adiós": "tinkunakuy",
+    "gracias": "sukhi",
+    "por favor": "tinkuykuy",
+    
+    "amor": "kuyay",
+    "comida": "mikhuna",
+    "agua": "yaku",
+    "casa": "wasi",
+    "trabajo": "llankay",
+    "familia": "wasiñiwa",
+    "escuela": "yachaywasi",
+    "libro": "kutiy",
+    "mesa": "pukllay",
+    "puerta": "pukllay",
+    "ventana": "lluklla",
+    "sol": "inti",
+    "luna": "killa",
+    "estrella": "joyllor",
+    "tiempo": "killa",
+    "día": "p'unchay",
+    "noche": "tuta",
+    "feliz": "kusisjha",
+    "triste": "llakisqa",
+    "bonito": "sumaq",
+    "feo": "atatau",
+    "calor": "wasiñiwa",
+    "frío": "shyry",
+    "cielo": "hanaq pacha",
+    "tierra": "pacha",
+    "familia": "ayllukuna",
+    "hermano": "wayki",
+    "hermana": "ñaña",
+    "madre": "mamay",
+    "padre": "taytay",
+    "hijo": "wawa",
+    "hija": "wawa",
+    
+    "jefe": "qhari",
+    "jefa": "wawa",
+    "niño": "warma",
+    "niña": "sipascha",
+    "hombre": "qhari",
+    "mujer": "warmi",
+    "adulto": "qhari",
+    "anciano": "waranka",
+    "niña pequeña": "ñawi",
+    "ropa": "pachakuna",
+    "carne": "aycha",
+    "trabajo": "llankay",
+    
+    "música": "ñawi",
+    "canción": "taki",
+    "sol": "inti",
+    "luna": "killa",
+    "mar": "mama yaku",
+    "río": "mayu",
+    
+    "montaña": "orqu",
+    
+
+        };
+
+        function traducir() {
+            const palabra = document.getElementById('palabra').value.toLowerCase();
+            const resultado = document.getElementById('resultado');
+
+            if (palabra in traducciones) {
+                resultado.textContent = `La traducción es: ${traducciones[palabra]}`;
+            } else {
+                resultado.textContent = "Lo siento, no conozco la traducción de esta palabra.";
+            }
+        }
+    </script>
+</body>
+</html>
